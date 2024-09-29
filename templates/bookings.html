@@ -32,9 +32,6 @@
         nav a:hover {
             text-decoration: underline;
         }
-        h1 {
-            margin: 0;
-        }
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -74,10 +71,10 @@
 </header>
 
 <nav>
-    <a href="home.html">หน้าหลัก</a>
-    <a href="about.html">เกี่ยวกับเรา</a>
-    <a href="bookings.html">ดูรายการจอง</a>
-    <a href="contact.html">ติดต่อเรา</a>
+    <a href="{% url 'home' %}">หน้าหลัก</a>
+    <a href="{% url 'about' %}">เกี่ยวกับเรา</a>
+    <a href="{% url 'bookings' %}">ดูรายการจอง</a>
+    <a href="{% url 'contact' %}">ติดต่อเรา</a>
 </nav>
 
 <div class="container">
@@ -95,4 +92,17 @@
             <tr>
                 <td>สมชาย ใจดี</td>
                 <td>10/10/2024</td>
-                <td
+                <td>15:00 - 17:00</td>
+                <td>สนาม A</td>
+            </tr>
+            <!-- Add more bookings as needed -->
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p>© 2024 ระบบจองสนามฟุตบอล</p>
+</footer>
+
+</body>
+</html>

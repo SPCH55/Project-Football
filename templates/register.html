@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,7 +30,7 @@
             flex-direction: column;
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"], input[type="password"], input[type="email"] {
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
@@ -39,7 +39,7 @@
 
         button {
             padding: 10px;
-            background-color: #004d99;
+            background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
@@ -47,39 +47,34 @@
         }
 
         button:hover {
-            background-color: #003366;
+            background-color: #218838;
         }
 
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 10px;
         }
 
-        .register-link a {
+        .login-link a {
             color: #004d99;
             text-decoration: none;
         }
 
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>เข้าสู่ระบบ</h2>
+        <h2>Register</h2>
         <form method="POST">
             {% csrf_token %}
-            <label for="username">ชื่อผู้ใช้:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">รหัสผ่าน:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">เข้าสู่ระบบ</button>
+            {{ form.as_p }}
+            <button type="submit">ลงทะเบียน</button>
         </form>
-        <div class="register-link">
-            <p>ยังไม่มีบัญชี? <a href="/register">ลงทะเบียนที่นี่</a></p>
+        <div class="login-link">
+            <p>มีบัญชีอยู่แล้ว? <a href="{% url 'login' %}">เข้าสู่ระบบที่นี่</a></p>
         </div>
     </div>
 </body>
