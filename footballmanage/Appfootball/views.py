@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 
+from .forms import RegisterForm
+
 class CustomLoginView(LoginView):
     form_class = CustomLoginForm
     template_name = 'login.html'  
@@ -36,3 +38,7 @@ def logout_view(request):
     return redirect('home')
 
 
+def sign_up(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        return render(request, 'users/register.html', { 'form': form})   
