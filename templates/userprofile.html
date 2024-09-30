@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าโปรไฟล์ผู้ใช้</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-100 text-center font-sans">
+
+ <!-- Navigation -->
+<nav class="bg-green-600 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+        <a href="{% url 'userprofile' %}" class="text-white mx-4 flex items-center">
+            <i class="fas fa-user-circle text-xl"></i> <!-- Profile icon -->
+        </a>
+    </div>
+    <div class="flex-grow text-center">
+        <a href="{% url 'home' %}" class="text-white mx-4 font-bold hover:underline">หน้าหลัก</a>
+        <a href="{% url 'about' %}" class="text-white mx-4 font-bold hover:underline">เกี่ยวกับสนาม</a>
+        <a href="{% url 'bookings' %}" class="text-white mx-4 font-bold hover:underline">ดูรายการจอง</a>
+        <a href="{% url 'contact' %}" class="text-white mx-4 font-bold hover:underline">ติดต่อเรา</a>
+    </div>
+    <div>
+        <a href="{% url 'logout' %}" class="text-white mx-4 flex items-center">
+            <i class="fas fa-sign-out-alt text-xl"></i> <!-- Logout icon -->
+        </a>
+    </div>
+</nav>
+
+    <div class="max-w-md mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
+        <div class="flex items-center mb-6">
+            <img src="https://scontent.fbkk22-8.fna.fbcdn.net/v/t1.6435-9/72789111_533548940774850_1003442864450961408_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeGoWySUyXqMfNnpWsUeYpaRSet-QHbaxTBJ635AdtrFMO_0OHAb4Do-G-l7jEDiijcxM4SQjvPR2H1G3Ztvp7Aw&_nc_ohc=x4IN1raBtdoQ7kNvgGOoYo4&_nc_ht=scontent.fbkk22-8.fna&oh=00_AYDBEI9ddY2_oKJ0kH1LnGiCF3XI5uNXxg2_FRyrAhGyJA&oe=67226A7F" alt="โปรไฟล์ของผู้ใช้" class="w-24 h-24 rounded-full mr-4">
+            <div>
+                <h1 class="text-2xl font-semibold">Film</h1>
+                <p>Email: user@example.com</p>
+            </div>
+        </div>
+        
+        <!-- Edit Profile and Change Password Buttons -->
+        <div class="mt-8">
+            <a href="{% url 'edit_profile' %}" class="inline-block bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300">แก้ไขโปรไฟล์</a>
+            <a href="{% url 'change_password' %}" class="inline-block bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition duration-300 ml-4">เปลี่ยนรหัสผ่าน</a>
+        </div>
+    </div>
+</body>
+</html>

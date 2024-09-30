@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 class FootballField(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=255)
@@ -8,3 +8,18 @@ class FootballField(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    # เพิ่มฟิลด์อื่นๆ ที่ต้องการ
+
+class FieldBooking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    field_name = models.CharField(max_length=100)
+    booking_date = models.DateField()
+    booking_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.user.username} - {self.field_name} on {self.booking_date} at {self.booking_time}"

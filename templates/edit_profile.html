@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขโปรไฟล์ผู้ใช้</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-100 text-center font-sans">
+
+    <div class="max-w-md mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-2xl font-semibold mb-6">แก้ไขโปรไฟล์ผู้ใช้</h1>
+
+        <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">  <!-- เพิ่ม enctype สำหรับอัปโหลดไฟล์ -->
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700">ชื่อผู้ใช้:</label>
+                <input type="text" id="username" name="username" required class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">อีเมล:</label>
+                <input type="email" id="email" name="email" required class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="profile_image" class="block text-gray-700">อัปโหลดรูปภาพโปรไฟล์:</label>
+                <input type="file" id="profile_image" name="profile_image" accept="image/*" class="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+            </div>
+
+            <button type="submit" class="w-full bg-green-600 text-white font-bold py-2 rounded hover:bg-green-700 transition duration-300">บันทึกโปรไฟล์</button>
+        </form>
+    </div>
+
+</body>
+</html>

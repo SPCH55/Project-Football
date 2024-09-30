@@ -5,6 +5,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 from .forms import RegisterForm
+from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
+from .models import FieldBooking
+from .forms import FieldBookingForm
+from django.http import HttpResponse
 
 # def bookings_view(request):
 #     return render(request, 'bookings.html')
@@ -42,6 +47,8 @@ def logout_view(request):
     return redirect('home')
 
 
+
+
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -66,6 +73,15 @@ def bookings(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def userprofile(request):
+    return render(request, 'userprofile.html')
+
+def edit_profile(request):
+    return render(request, 'edit_profile.html')
+
+def change_password(request):
+    return render(request, 'change_password.html')  # ตรวจสอบชื่อไฟล์ให้ตรง
+
 def sign_up(request):
     if request.method == 'GET':
         form = RegisterForm()
@@ -81,3 +97,42 @@ def sign_up(request):
             return redirect('login')
         else:
             return render(request, 'register.html', {'form': form})
+        
+def edit_profile(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        profile_image = request.FILES.get('profile_image')
+
+        # สมมุติว่าคุณมีโมเดล UserProfile สำหรับเก็บข้อมูลโปรไฟล์
+        user_profile = request.user.profile
+        user_profile.username = username
+        user_profile.email = email
+
+        if profile_image:
+            user_profile.profile_image = profile_image
+
+        user_profile.save()
+        return redirect('profile')  # เปลี่ยนเป็น URL ของหน้าโปรไฟล์
+
+    return render(request, 'edit_profile.html')
+
+
+
+@login_required
+def confirm_booking(request):
+    if request.method == 'POST':
+        field_name = request.POST.get('field_name')
+        booking_date = request.POST.get('booking_date')
+        booking_time = request.POST.get('booking_time')
+
+        # สร้างอ็อบเจกต์การจองและบันทึกลงฐานข้อมูล
+        booking = FieldBooking(user=request.user, field_name=field_name, 
+                               booking_date=booking_date, booking_time=booking_time)
+        booking.save()
+
+        return HttpResponse('การจองของคุณได้รับการยืนยันแล้ว')
+
+    return redirect('home')
+
+

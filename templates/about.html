@@ -4,70 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เกี่ยวกับเรา - ระบบจองสนามฟุตบอล</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e6ffe6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #28a745;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        nav {
-            background-color: #218838;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #28a745;
-            color: white;
-            margin-top: 20px;
-        }
-    </style>
+    <!-- เรียกใช้ Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-green-50 text-gray-900">
 
-<header>
-    <h1>เกี่ยวกับเรา</h1>
-</header>
+<!-- ส่วน Header -->
+<!-- <header class="bg-green-600 text-white py-6">
+    <h1 class="text-center text-4xl font-bold">ข้อมูลเกี่ยวกับสนาม</h1>
+</header> -->
 
-<nav>
-    <a href="{% url 'home' %}">หน้าหลัก</a>
-    <a href="{% url 'about' %}">เกี่ยวกับเรา</a>
-    <a href="{% url 'bookings' %}">ดูรายการจอง</a>
-    <a href="{% url 'contact' %}">ติดต่อเรา</a>
+<!-- Navigation -->
+<nav class="bg-green-600 py-4 flex items-center justify-between">
+    <div class="flex items-center">
+        <a href="{% url 'userprofile' %}" class="text-white mx-4 flex items-center">
+            <i class="fas fa-user-circle text-xl"></i> <!-- Profile icon -->
+        </a>
+    </div>
+    <div class="flex-grow text-center">
+        <a href="{% url 'home' %}" class="text-white mx-4 font-bold hover:underline">หน้าหลัก</a>
+        <a href="{% url 'about' %}" class="text-white mx-4 font-bold hover:underline">เกี่ยวกับสนาม</a>
+        <a href="{% url 'bookings' %}" class="text-white mx-4 font-bold hover:underline">ดูรายการจอง</a>
+        <a href="{% url 'contact' %}" class="text-white mx-4 font-bold hover:underline">ติดต่อเรา</a>
+    </div>
+    <div>
+        <a href="{% url 'logout' %}" class="text-white mx-4 flex items-center">
+            <i class="fas fa-sign-out-alt text-xl"></i> <!-- Logout icon -->
+        </a>
+    </div>
 </nav>
 
-<div class="container">
-    <h2 style="color: #28a745;">เกี่ยวกับระบบจองสนามฟุตบอล</h2>
-    <p>เราคือผู้ให้บริการระบบจองสนามฟุตบอลที่สะดวก รวดเร็ว และมีความน่าเชื่อถือ</p>
+<h1 class="text-3xl text-green-600 py-5 text-center">เกี่ยวกับสนาม</h1>
+
+<!-- ส่วนเนื้อหาหลัก -->
+<div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-green-600 text-2xl font-semibold mb-4">เกี่ยวกับระบบจองสนามฟุตบอล</h2>
+    <p class="mb-6">เราคือผู้ให้บริการระบบจองสนามฟุตบอลที่สะดวก รวดเร็ว และมีความน่าเชื่อถือ</p>
+
+    <a href="https://www.google.com" target="_blank">
+        <img src="https://d136usn7jnoe61.cloudfront.net/magazine/articles/431/images/soccer-pro.jpg" alt="Placeholder Image" style="width: 500px; height: auto; border: none;">
+    </a>
+    
+    <!-- เพิ่มรายละเอียดสนาม -->
+    <div class="field-details">
+        <h3 class="text-green-700 text-xl font-semibold mb-2">รายละเอียดสนาม</h3>
+        <ul class="list-disc pl-5">
+            <li>ชื่อสนาม: Jojo Soccer Field</li>
+            <li>สถานที่ตั้ง: ถนนสายอุบล-ตระการ ตำบลไร่น้อย อำเภอเมือง</li>
+            <li>ประเภทสนาม: สนามหญ้าเทียมมาตรฐานสากลจากประเทศฮอลแลนด์</li>
+            <li>สิ่งอำนวยความสะดวก:
+                <ul class="list-square pl-5">
+                    <li>ไฟส่องสว่างสำหรับการเล่นตอนกลางคืน</li>
+                    <li>ห้องอาบน้ำและล็อกเกอร์</li>
+                    <li>ที่จอดรถสะดวกสบาย</li>
+                    <li>ร้านอาหารและเครื่องดื่ม</li>
+                </ul>
+            </li>
+            <li>ราคาการจอง: 500 บาทต่อชั่วโมง</li>
+            <li>เบอร์ติดต่อ: 08x-xxx-xxxx</li>
+        </ul>
+    </div>
 </div>
 
-<footer>
+<!-- ส่วน Footer -->
+<footer class="bg-green-600 text-white text-center py-6 mt-10">
     <p>© 2024 ระบบจองสนามฟุตบอล</p>
 </footer>
 
