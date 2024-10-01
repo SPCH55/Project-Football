@@ -11,12 +11,14 @@ urlpatterns = [
     path('logouts', views.logout_view, name='logout'),
     path('home', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('bookings', views.bookings, name='bookings'),
+    # path('bookings/', views.bookings, name='bookings'),
     path('contact', views.contact, name='contact'),
     path('userprofile', views.userprofile, name='userprofile'),
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('change_password', views.change_password, name='change_password'),
     path('confirm_booking/', views.confirm_booking, name='confirm_booking'),
+    path('book/', views.create_booking, name='book_field'),
+    path('bookings/', views.view_bookings, name='view_bookings'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

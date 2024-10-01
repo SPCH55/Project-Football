@@ -136,3 +136,26 @@ def confirm_booking(request):
     return redirect('home')
 
 
+# **********NEW**********
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import BookingForm
+from .models import Booking
+
+def create_booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user  # Associate the logged-in user
+            booking.save()
+            return redirect('view_bookings')  # Redirect to a success page or overview
+    else:
+        form = BookingForm()
+    
+    return render(request, 'book_field.html', {'form': form})
+
+@login_required
+def view_bookings(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'bookings.html', {'bookings': bookings})
